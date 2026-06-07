@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modern Calculator</title>
+
+<style>
+body{
+margin:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+font-family:Arial;
+background:linear-gradient(135deg,#1f1c2c,#928dab);
+}
+
+/* glass card */
+.calculator{
+width:300px;
+padding:20px;
+border-radius:20px;
+background:rgba(255,255,255,0.1);
+backdrop-filter:blur(12px);
+box-shadow:0 10px 30px rgba(0,0,0,0.4);
+}
+
+/* display */
+#display{
+width:100%;
+height:60px;
+font-size:26px;
+text-align:right;
+padding:10px;
+border:none;
+border-radius:12px;
+background:rgba(255,255,255,0.2);
+color:#fff;
+outline:none;
+}
+
+/* buttons grid */
+.buttons{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:10px;
+margin-top:15px;
+}
+
+/* buttons */
+button{
+padding:15px;
+font-size:18px;
+border:none;
+border-radius:12px;
+cursor:pointer;
+transition:0.2s;
+background:rgba(255,255,255,0.15);
+color:#fff;
+}
+
+button:hover{
+background:rgba(255,255,255,0.3);
+transform:scale(1.05);
+}
+
+/* special buttons */
+.op{
+background:#ff9f43;
+color:#000;
+font-weight:bold;
+}
+
+.equal{
+background:#1dd1a1;
+color:#000;
+font-weight:bold;
+}
+
+.clear{
+background:#ee5253;
+color:#fff;
+font-weight:bold;
+grid-column:span 4;
+}
+</style>
+</head>
+
+<body>
+
+<div class="calculator">
+
+<input id="display" type="text" disabled>
+
+<div class="buttons">
+
+<button onclick="press('7')">7</button>
+<button onclick="press('8')">8</button>
+<button onclick="press('9')">9</button>
+<button class="op" onclick="press('/')">÷</button>
+
+<button onclick="press('4')">4</button>
+<button onclick="press('5')">5</button>
+<button onclick="press('6')">6</button>
+<button class="op" onclick="press('*')">×</button>
+
+<button onclick="press('1')">1</button>
+<button onclick="press('2')">2</button>
+<button onclick="press('3')">3</button>
+<button class="op" onclick="press('-')">−</button>
+
+<button onclick="press('0')">0</button>
+<button onclick="press('.')">.</button>
+<button class="equal" onclick="calculate()">=</button>
+<button class="op" onclick="press('+')">+</button>
+
+<button class="clear" onclick="clearDisplay()">CLEAR</button>
+
+</div>
+
+</div>
+
+<script>
+
+let display=document.getElementById("display");
+
+function press(val){
+display.value += val;
+}
+
+function clearDisplay(){
+display.value="";
+}
+
+function calculate(){
+try{
+display.value = eval(display.value);
+}
+catch{
+display.value="Error";
+}
+}
+
+</script>
+
+</body>
+</html>
